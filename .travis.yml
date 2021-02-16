@@ -61,7 +61,7 @@ matrix:
       language: bash
       name: Swift 5.3 compatibility
       before_install:
-        - powershell -Command Install-Binary -Url "https://swift.org/builds/swift-5.3.3-release/windows10/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-windows10.exe" -Name "installer.exe" -ArgumentList \("-q"\)
+        - powershell -Command Install-Binary -Url "https://swift.org/builds/swift-5.3.3-release/windows10/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-windows10.exe" -Name "installer.exe"
       script:
         - echo "Lol"
 #     - os: osx
