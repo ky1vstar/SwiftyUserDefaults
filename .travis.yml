@@ -6,7 +6,7 @@ matrix:
       name: Swift 5.3 compatibility
       before_install:
         - wget -r "https://swift.org/builds/swift-5.3.3-release/windows10/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-windows10.exe" --no-check-certificate
-        - swift-5.3.3-RELEASE-windows10.exe -q
+        - start swift-5.3.3-RELEASE-windows10.exe -q
         - Install-Binary -Url "https://swift.org/builds/swift-5.3.3-release/windows10/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-windows10.exe" -Name "installer.exe"
       script:
         - echo "Lol"
