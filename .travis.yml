@@ -1,101 +1,107 @@
 language: generic
 matrix:
   include: 
-    - os: osx
-      osx_image: xcode11.3
-      name: Danger
-      env:
-        - CACHE_NAME=SWIFT5_1
-        - SWIFT_VERSION=5.0
-        - SWIFT_TOOLS_VERSION=5.1
-        - XCODEGEN_VERSION=2.5.0
-        - IOS_SIMULATOR='name=iPhone 11,OS=13.2'
-        - IOS_SDK=iphonesimulator13.2
-        - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
-        - TVOS_SDK=appletvsimulator13.2
-        - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
-        - WATCHOS_SDK=watchsimulator6.1
+#     - os: osx
+#       osx_image: xcode11.3
+#       name: Danger
+#       env:
+#         - CACHE_NAME=SWIFT5_1
+#         - SWIFT_VERSION=5.0
+#         - SWIFT_TOOLS_VERSION=5.1
+#         - XCODEGEN_VERSION=2.5.0
+#         - IOS_SIMULATOR='name=iPhone 11,OS=13.2'
+#         - IOS_SDK=iphonesimulator13.2
+#         - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
+#         - TVOS_SDK=appletvsimulator13.2
+#         - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
+#         - WATCHOS_SDK=watchsimulator6.1
+#       before_install:
+#         - brew install danger/tap/danger-swift
+#       script: DEBUG="*" danger-swift ci  
+#     - os: osx
+#       osx_image: xcode11.3
+#       name: Swift 5.1 compatibility
+#       env:
+#         - CACHE_NAME=SWIFT5_1
+#         - SWIFT_VERSION=5.0
+#         - SWIFT_TOOLS_VERSION=5.1
+#         - XCODEGEN_VERSION=2.5.0
+#         - IOS_SIMULATOR='name=iPhone 11,OS=13.0'
+#         - IOS_SDK=iphonesimulator13.0
+#         - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
+#         - TVOS_SDK=appletvsimulator13.0
+#         - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
+#         - WATCHOS_SDK=watchsimulator6.0         
+#     - os: osx
+#       osx_image: xcode10.2
+#       name: Swift 5.0 compatibility
+#       env:
+#         - CACHE_NAME=SWIFT5_0
+#         - SWIFT_VERSION=5.0
+#         - SWIFT_TOOLS_VERSION=5.0        
+#         - XCODEGEN_VERSION=2.5.0
+#         - IOS_SIMULATOR='name=iPhone 6s,OS=12.2'
+#         - IOS_SDK=iphonesimulator12.2
+#         - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
+#         - TVOS_SDK=appletvsimulator12.2
+#         - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
+#         - WATCHOS_SDK=watchsimulator5.2      
+#     - os: linux
+#       sudo: required
+#       dist: trusty    
+#       name: Swift 5.1 compatibility
+#       env:
+#         - CACHE_NAME=LINUX_SWIFT5_1
+#         - SWIFT_VERSION=5.1
+#       before_install:
+#         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+#       script:
+#         - TEST=1 swift test
+    - os: windows
+      name: Swift 5.3 compatibility
       before_install:
-        - brew install danger/tap/danger-swift
-      script: DEBUG="*" danger-swift ci  
-    - os: osx
-      osx_image: xcode11.3
-      name: Swift 5.1 compatibility
-      env:
-        - CACHE_NAME=SWIFT5_1
-        - SWIFT_VERSION=5.0
-        - SWIFT_TOOLS_VERSION=5.1
-        - XCODEGEN_VERSION=2.5.0
-        - IOS_SIMULATOR='name=iPhone 11,OS=13.0'
-        - IOS_SDK=iphonesimulator13.0
-        - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
-        - TVOS_SDK=appletvsimulator13.0
-        - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
-        - WATCHOS_SDK=watchsimulator6.0         
-    - os: osx
-      osx_image: xcode10.2
-      name: Swift 5.0 compatibility
-      env:
-        - CACHE_NAME=SWIFT5_0
-        - SWIFT_VERSION=5.0
-        - SWIFT_TOOLS_VERSION=5.0        
-        - XCODEGEN_VERSION=2.5.0
-        - IOS_SIMULATOR='name=iPhone 6s,OS=12.2'
-        - IOS_SDK=iphonesimulator12.2
-        - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
-        - TVOS_SDK=appletvsimulator12.2
-        - WATCHOS_SIMULATOR='name=Apple Watch Series 4 - 44mm'
-        - WATCHOS_SDK=watchsimulator5.2      
-    - os: linux
-      sudo: required
-      dist: trusty    
-      name: Swift 5.1 compatibility
-      env:
-        - CACHE_NAME=LINUX_SWIFT5_1
-        - SWIFT_VERSION=5.1
-      before_install:
-        - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+        - Install-Binary -Url "https://swift.org/builds/swift-5.3.3-release/windows10/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-windows10.exe" -Name "installer.exe" -ArgumentList ("-q")
       script:
-        - TEST=1 swift test
-    - os: osx
-      osx_image: xcode10.1
-      name: Swift 4.2 compatibility
-      env:
-        - CACHE_NAME=SWIFT4_2
-        - SWIFT_VERSION=4.2
-        - SWIFT_TOOLS_VERSION=4.2        
-        - XCODEGEN_VERSION=2.3.0
-        - IOS_SIMULATOR='name=iPhone 6s,OS=12.1'
-        - IOS_SDK=iphonesimulator12.1
-        - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
-        - TVOS_SDK=appletvsimulator12.1
-        - WATCHOS_SIMULATOR='name=Apple Watch - 42mm'
-        - WATCHOS_SDK=watchsimulator5.1
-    - os: linux
-      sudo: required
-      dist: trusty    
-      name: Swift 4.2 compatibility
-      env:
-        - CACHE_NAME=LINUX_SWIFT4_2
-        - SWIFT_VERSION=4.2
-      before_install:
-        - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-      script:
-        - TEST=1 swift test              
-    - os: osx
-      osx_image: xcode10.1
-      name: Swift 4.1 compatibility
-      env: 
-        - CACHE_NAME=SWIFT4_1
-        - SWIFT_VERSION=4.0
-        - SWIFT_TOOLS_VERSION=4.0      
-        - XCODEGEN_VERSION=2.3.0
-        - IOS_SIMULATOR='name=iPhone 6s,OS=12.1'
-        - IOS_SDK=iphonesimulator12.1
-        - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
-        - TVOS_SDK=appletvsimulator12.1
-        - WATCHOS_SIMULATOR='name=Apple Watch - 42mm'
-        - WATCHOS_SDK=watchsimulator5.1
+        - echo "Lol"
+#     - os: osx
+#       osx_image: xcode10.1
+#       name: Swift 4.2 compatibility
+#       env:
+#         - CACHE_NAME=SWIFT4_2
+#         - SWIFT_VERSION=4.2
+#         - SWIFT_TOOLS_VERSION=4.2        
+#         - XCODEGEN_VERSION=2.3.0
+#         - IOS_SIMULATOR='name=iPhone 6s,OS=12.1'
+#         - IOS_SDK=iphonesimulator12.1
+#         - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
+#         - TVOS_SDK=appletvsimulator12.1
+#         - WATCHOS_SIMULATOR='name=Apple Watch - 42mm'
+#         - WATCHOS_SDK=watchsimulator5.1
+#     - os: linux
+#       sudo: required
+#       dist: trusty    
+#       name: Swift 4.2 compatibility
+#       env:
+#         - CACHE_NAME=LINUX_SWIFT4_2
+#         - SWIFT_VERSION=4.2
+#       before_install:
+#         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+#       script:
+#         - TEST=1 swift test              
+#     - os: osx
+#       osx_image: xcode10.1
+#       name: Swift 4.1 compatibility
+#       env: 
+#         - CACHE_NAME=SWIFT4_1
+#         - SWIFT_VERSION=4.0
+#         - SWIFT_TOOLS_VERSION=4.0      
+#         - XCODEGEN_VERSION=2.3.0
+#         - IOS_SIMULATOR='name=iPhone 6s,OS=12.1'
+#         - IOS_SDK=iphonesimulator12.1
+#         - TVOS_SIMULATOR='name=Apple TV 4K (at 1080p)'
+#         - TVOS_SDK=appletvsimulator12.1
+#         - WATCHOS_SIMULATOR='name=Apple Watch - 42mm'
+#         - WATCHOS_SDK=watchsimulator5.1
 
 notifications:
   email: false
